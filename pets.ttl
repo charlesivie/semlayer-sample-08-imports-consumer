@@ -1,0 +1,20 @@
+# Scenario 08 — CONSUMER that owl:imports scenario 07 (publish 07 first).
+# Demonstrates owl:imports closure + the --inference caveat together.
+#
+# ex:Dog is a subclass of core:Animal, but that axiom only "activates" the
+# AnimalName rule below when subclass inference runs AND the closure contains
+# core (pulled in via owl:imports). See abox/08-imports/ for the good/bad data
+# and the two --inference runs.
+
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix core: <https://example.org/animals-core#> .
+@prefix ex:   <https://example.org/pets#> .
+
+<https://example.org/pets> a owl:Ontology ;
+    rdfs:label "Pets" ;
+    owl:imports <https://example.org/animals-core> .
+
+ex:Dog a owl:Class ;
+    rdfs:label "Dog" ;
+    rdfs:subClassOf core:Animal .

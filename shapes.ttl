@@ -1,0 +1,14 @@
+# The consumer's own shape targets the IMPORTED class core:Animal.
+# A Dog instance is only caught by this shape when rdfs inference entails
+# `Dog rdf:type core:Animal` from the subclass axiom in the closure.
+
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix core: <https://example.org/animals-core#> .
+
+<https://example.org/pets#DogNameShape> a sh:NodeShape ;
+    sh:targetClass core:Animal ;
+    sh:property [
+        sh:path core:name ;
+        sh:minCount 1 ;
+        sh:message "Every Animal (Dogs included) must have a name."
+    ] .
